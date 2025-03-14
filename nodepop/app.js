@@ -1,13 +1,21 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import createError from 'http-errors';
+import express, { response } from 'express'
+import path, {dirname} from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+
+
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
+import productsRouter from './routes/products.js';
+import {fileURLToPath} from 'url';
+import { request } from 'http';
 
 var app = express();
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/products', productsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,4 +48,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+
+
+export default app

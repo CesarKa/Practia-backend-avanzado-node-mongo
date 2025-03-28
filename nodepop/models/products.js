@@ -1,3 +1,5 @@
+ 
+
 const products = [
     {
         name: "Smartphone Galaxy Z",
@@ -70,6 +72,6 @@ const products = [
         tags: ["lifestyle"]
     }
 ];
-
+ 
 
 export default products;

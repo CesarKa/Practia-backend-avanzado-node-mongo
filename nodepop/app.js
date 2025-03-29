@@ -8,9 +8,15 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
-import productsRouter from './routes/products.js';
+//import productsRouter from './routes/products.js';
+import * as productsRouter from './routes/products.js' 
 import {fileURLToPath} from 'url';
 import { request } from 'http';
+import connectMongoose from './lib/connectMongoose.js'
+
+
+await connectMongoose();
+console.log('Connected to MongoDB.');
 
 var app = express();
 
@@ -29,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/products', productsRouter);
+app.get('/products', productsRouter.index);
 
 
 // catch 404 and forward to error handler

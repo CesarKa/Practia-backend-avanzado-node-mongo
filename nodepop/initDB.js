@@ -1,7 +1,7 @@
 import readline from 'node:readline/promises'
-import connectMongoose from '/lib/connectMongoose.js'
-import Product from '/models/Products.js'
-import User from '/models/User.js'
+import connectMongoose from './lib/connectMongoose.js'
+import Product from './models/Products.js'
+import User from './models/User.js'
 
 const connection = await connectMongoose()
 console.log('Connected to MongoDB:', connection.name)

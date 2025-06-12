@@ -4,8 +4,7 @@ import express, { response } from 'express'
 import path, {dirname} from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-
-
+import { loginController} from './controllers/index.js'
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 //import productsRouter from './routes/products.js';
@@ -13,12 +12,14 @@ import * as productsRouter from './routes/products.js'
 import {fileURLToPath} from 'url';
 import { request } from 'http';
 import connectMongoose from './lib/connectMongoose.js'
-
+import * as sessionManager from './lib/sessionManager.js'
 
 await connectMongoose();
 console.log('Connected to MongoDB.');
 
 var app = express();
+
+app.locals.siteTitle = 'NodePop'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -33,9 +34,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(sessionManager.middleware, sessionManager.useSessionInViews)
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.get('/products', productsRouter.index);
+app.get('/login', loginController.indexLogin)
+
+
 
 
 // catch 404 and forward to error handler

@@ -13,6 +13,7 @@ import {fileURLToPath} from 'url';
 import { request } from 'http';
 import connectMongoose from './lib/connectMongoose.js'
 import * as sessionManager from './lib/sessionManager.js'
+import * as homeControler from './controllers/homeControler.js'
 
 await connectMongoose();
 console.log('Connected to MongoDB.');
@@ -37,11 +38,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(sessionManager.middleware, sessionManager.useSessionInViews)
 
 
-app.use('/', indexRouter);
+app.get('/', homeControler.index);
 app.use('/users', usersRouter);
 app.get('/products', productsRouter.index);
-app.get('/login', loginController.indexLogin)
-
+app.get('/login', loginController.indexLogin);
+app.post('/login', loginController.postLogin);
+app.get('/logout', loginController.logout);
 
 
 

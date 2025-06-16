@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-// definir el esquema de los agentes
+
 const productSchema = new Schema({
   name: String,
   price: { type: Number},
@@ -9,11 +9,11 @@ const productSchema = new Schema({
   tags: { type: [String], enum: ['work', 'lifestyle', 'motor', 'mobile'] }
 
 }, {
-  collection: 'products' // para forzar el nombre de la colección
+  collection: 'products'
 })
 
 productSchema.statics.list = function(filter, skip, limit, sort, fields) {
-  const query = Product.find(filter); // devuelve un objeto de tipo query que es un thenable
+  const query = Product.find(filter); 
   query.skip(skip);
   query.limit(limit);
   query.sort(sort);
@@ -21,7 +21,7 @@ productSchema.statics.list = function(filter, skip, limit, sort, fields) {
   return query.exec();
 }
 
-// crear el modelo
+
 const Product = mongoose.model('Product', productSchema)
 
 export default Product

@@ -45,7 +45,14 @@ app.get('/login', loginController.indexLogin);
 app.post('/login', loginController.postLogin);
 app.get('/logout', loginController.logout);
 
+{ // products
+  const productsRouter = express.Router()
 
+  productsRouter.get('/new', productsController.indexNew)
+  productsRouter.post('/new', productsController.postNew)
+  productsRouter.get('/delete/:productId', productsController.deleteOne)
+  app.use('/products', sessionManager.guard, productsRouter)
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

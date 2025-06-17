@@ -49,7 +49,7 @@ app.get('/logout', loginController.logout);
 
 app.get('/products/new', productsController.indexNew)
 app.post('/products/new', productsController.postNew)
-app.get('/delete/:productId', productsController.deleteOne)
+app.delete('/delete/:productId', productsController.deleteOne)
 
 
 app.use(function(req, res, next) {

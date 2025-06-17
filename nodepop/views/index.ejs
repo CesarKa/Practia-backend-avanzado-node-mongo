@@ -25,11 +25,15 @@
               <td style="text-align: right"><%= product.price / 100 %>€</td>
               <td><img src="images/products/<%= product.image %>"></td>
               <td><%= product.tags.join(', ') %></td>
-              <td><a
-                onclick="confirmDelete('<%= product.name %>', '<%= product._id %>')"
-                href="javascript:void(0);">
+              <td>
+                <form action="/delete/<%= product._id %>" method="delete">
+                <button type="submit"
+                onsubmit="return confirm('¿Estás seguro de eliminar este producto?');"
+                >
                     <i class="bi bi-trash"></i>
-            </a></td>
+                </button>
+            </form>
+            </td>
             </tr>
           <% }) %>
           </tbody>
@@ -54,5 +58,6 @@
         </p>
       <% } %>
   </div>
+
   </body>
 </html>

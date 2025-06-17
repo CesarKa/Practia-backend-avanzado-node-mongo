@@ -34,7 +34,7 @@ export async function index(req, res, next) {
       const totalCount = await Product.find(filters).countDocuments()
       res.locals.products = await Product.list(filters, skip, limit, sort)
 
-      // pagination
+
       res.locals.pageSize = pageSize
       res.locals.skipPrev = skip - pageSize
       res.locals.skipNext = skip + pageSize

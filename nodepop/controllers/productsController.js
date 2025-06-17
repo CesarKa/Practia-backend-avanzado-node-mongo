@@ -1,9 +1,11 @@
 import createError from 'http-errors'
-import { Product } from '../models/index.js'
+import  Product from '../models/Products.js'
 
 export async function indexNew(req, res, next) {
-  res.render('products/new')
+  res.render('newProduct')
 }
+
+
 
 export async function postNew(req, res, next) {
   try {

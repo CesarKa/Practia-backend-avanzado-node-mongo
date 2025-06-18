@@ -49,7 +49,9 @@ app.get('/logout', loginController.logout);
 
 app.get('/products/new', productsController.indexNew)
 app.post('/products/new', productsController.postNew)
-app.delete('/delete/:productId', productsController.deleteOne)
+app.post('/delete/:productId', productsController.deleteOne)
+
+app.get('/products/:productId', productsController.getOne)
 
 
 app.use(function(req, res, next) {

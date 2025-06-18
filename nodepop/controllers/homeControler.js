@@ -3,7 +3,6 @@ import Product from "../models/Products.js"
 export async function index(req, res, next) {
     try {
     const userId = req.session.userId
-
     if (userId) {
       const pageSize = 3
       const skip = parseInt(req.query.skip) || 0

@@ -54,3 +54,26 @@ export async function deleteOne(req, res, next) {
     next(error)
   }
 }
+
+export async function getOne(req, res, next) {
+  console.log('******')
+   try {
+    const userId = req.session.userId
+    const productId = req.params.productId
+
+  
+    const product = await Product.findOne({ _id: productId })
+
+
+    if (!product) {
+      console.warn(`WARNING - el usuario ${userId} intentó encontrar un producto que no existe (${productId})`)
+      return next(createError(404, 'Not found'))
+    }
+
+    res.locals.product = product
+    res.render('productDetail')
+
+    } catch (error) {
+    next(error)
+    }
+}

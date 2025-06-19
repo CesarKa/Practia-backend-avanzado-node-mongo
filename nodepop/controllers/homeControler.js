@@ -32,6 +32,7 @@ export async function index(req, res, next) {
 
       const totalCount = await Product.find(filters).countDocuments()
       res.locals.products = await Product.list(filters, skip, limit, sort)
+      console.log(res.locals.products)
 
 
       res.locals.pageSize = pageSize

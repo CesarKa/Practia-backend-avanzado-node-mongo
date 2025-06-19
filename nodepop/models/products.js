@@ -4,7 +4,7 @@ import mongoose, { Schema } from 'mongoose'
 const productSchema = new Schema({
   name: String,
   price: { type: Number},
-  imge: { type: String},
+  image: { type: String},
   owner: { type: Schema.Types.ObjectId, ref: 'User', index: true },
   tags: { type: [String], enum: ['work', 'lifestyle', 'motor', 'mobile'] }
 

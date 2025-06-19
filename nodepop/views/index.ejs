@@ -1,69 +1,70 @@
 <%- include('./elements/header'); %>
-    <div class="container">
+<div class="container">
 
-      
-      <% if (!session.userId) { %>
-        <p>Para ver el contenido debe hacer <a href="/login">login</a></p>
-      <% } %>
+  <% if (!session.userId) { %>
+    <p style="color: #a855f7;">Para ver el contenido debe hacer <a href="/login" style="color: #a855f7;">login</a></p>
+  <% } %>
 
-      <% // contenido para usuarios logados %>
-      <% if (session.userId) { %>
-        <h1>My Products</h1>
+  <% if (session.userId) { %>
+    <h1 style="color: #a855f7;">My Products</h1>
 
-        <table class="table table-hover">
-          <thead><tr>
-            <th>Name</th>
-            <th style="text-align: right">Price</th>
-            <th>Image</th>
-            <th>Tags</th>
-            <th>Actions</th>
-          </tr></thead>
-          <tbody>
-          <% products.forEach(product => { %>
-            <tr>
-              <td><a href="/products/<%= product._id %>"><%= product.name %></a></td>
-              <td style="text-align: right"><%= product.price / 100 %>€</td>
-              <td><img src="images/products/<%= product.image %>"></td>
-              <td><%= product.tags.join(', ') %></td>
-              <td>
-              <form
-                  action="/delete/<%= product._id %>"
-                  method="post"
-                  onsubmit="return confirm('Are you sure you want to delete it?');"
-                  class="flex-1"
-                >
-              <button
-              type="submit"
-              class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg transition"
+    <table class="table table-hover">
+      <thead>
+        <tr style="color: #a855f7;">
+          <th>Name</th>
+          <th style="text-align: right">Price</th>
+          <th>Image</th>
+          <th>Tags</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% products.forEach(product => { %>
+        <tr style="color: #a855f7;">
+          <td><a href="/products/<%= product._id %>" style="color: #a855f7;"><%= product.name %></a></td>
+          <td style="text-align: right"><%= product.price / 100 %>€</td>
+          <td><img src="products/<%= product.image %>"></td>
+          <td><%= product.tags.join(', ') %></td>
+          <td>
+            <form
+              action="/delete/<%= product._id %>"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete it?');"
+              class="flex-1"
             >
-            Delete product
-            </button>
-        </form>
-            </td>
-            </tr>
-          <% }) %>
-          </tbody>
-        </table>
-        <p>
-          total <%= totalCount %> products.
-        </p>
-        <p>
-          <!-- prev page -->
-          <% if (skipPrev >= 0) { %>
-            <a href="?limit=<%= pageSize %>&skip=<%= skipPrev %>">prev</a>
-          <% } else { %>
-            <span style="color: lightgray;">prev</span>
-          <% } %>
+              <button
+                type="submit"
+                class="w-full bg-[#a855f7] hover:bg-[#9333ea] text-white font-semibold py-3 rounded-lg transition"
+              >
+                Delete product
+              </button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
 
-          <!-- next page -->
-          <% if (skipNext < totalCount) { %>
-            <a href="?limit=<%= pageSize %>&skip=<%= skipNext %>">next</a>
-          <% } else { %>
-            <span style="color: lightgray;">next</span>
-          <% } %>
-        </p>
+    <p style="color: #a855f7;">
+      total <%= totalCount %> products.
+    </p>
+
+    <p>
+      <% if (skipPrev >= 0) { %>
+        <a href="?limit=<%= pageSize %>&skip=<%= skipPrev %>" style="color: #a855f7;">prev</a>
+      <% } else { %>
+        <span style="color: lightgray;">prev</span>
       <% } %>
-  </div>
 
-  </body>
+      <% if (skipNext < totalCount) { %>
+        <a href="?limit=<%= pageSize %>&skip=<%= skipNext %>" style="color: #a855f7;">next</a>
+      <% } else { %>
+        <span style="color: lightgray;">next</span>
+      <% } %>
+    </p>
+
+  <% } %>
+</div>
+
+</body>
 </html>

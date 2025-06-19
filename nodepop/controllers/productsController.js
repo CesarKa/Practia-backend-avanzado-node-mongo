@@ -8,20 +8,28 @@ export async function indexNew(req, res, next) {
 
 
 export async function postNew(req, res, next) {
+  
   try {
+    
     const userId = req.session.userId
-    const productData = req.body
+    const {name, price, tags} = req.body
 
-    const product = new Product(productData)
-    product.owner = userId
-    product.price = Math.trunc(product.price * 100)
+    const product = new Product({
+      name,
+      price,
+      tags,
+      image: req.file.filename,
+      owner: userId
+    });
+    
     product.tags = product.tags?.filter(tag => !!tag)
-
+    
   
     const savedProduct = await product.save()
-
+    
     res.redirect('/');
   } catch (error) {
+    console.log(error)
     next(error)
   }
 }
@@ -56,7 +64,6 @@ export async function deleteOne(req, res, next) {
 }
 
 export async function getOne(req, res, next) {
-  console.log('******')
    try {
     const userId = req.session.userId
     const productId = req.params.productId

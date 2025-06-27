@@ -34,7 +34,7 @@ async function initProducts(users) {
       name: "Smartphone Galaxy Z",
       owner: users[0]._id,
       price: 999.99,
-      image: "https://example.com/images/galaxy_z.jpg",
+      image: "1750334711433-.jpg",
       tags: ["mobile", "lifestyle"]
   },
   {

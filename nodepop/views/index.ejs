@@ -2,20 +2,20 @@
 <div class="container">
 
   <% if (!session.userId) { %>
-    <p style="color: #a855f7;">Para ver el contenido debe hacer <a href="/login" style="color: #a855f7;">login</a></p>
+    <p style="color: #a855f7;">Too see the content you must <a href="/login" style="color: #a855f7;">login</a></p>
   <% } %>
 
   <% if (session.userId) { %>
-    <h1 style="color: #a855f7;">My Products</h1>
+    <h1 style="color: #a855f7;"><%= __('My Products') %></h1>
 
     <table class="table table-hover">
       <thead>
         <tr style="color: #a855f7;">
-          <th>Name</th>
-          <th style="text-align: right">Price</th>
-          <th>Image</th>
-          <th>Tags</th>
-          <th>Actions</th>
+          <th><%= __('Name') %></th>
+          <th style="text-align: right"><%= __('Price') %></th>
+          <th><%= __('Image') %></th>
+          <th><%= __('Tags') %></th>
+          <th><%= __('Actions') %></th>
         </tr>
       </thead>
       <tbody>
@@ -29,14 +29,14 @@
             <form
               action="/delete/<%= product._id %>"
               method="post"
-              onsubmit="return confirm('Are you sure you want to delete it?');"
+              onsubmit="return confirm('<%= __(`Are you sure you want to delete it?`) %>');"
               class="flex-1"
             >
               <button
                 type="submit"
                 class="w-full bg-[#a855f7] hover:bg-[#9333ea] text-white font-semibold py-3 rounded-lg transition"
               >
-                Delete product
+                <%= __('Delete product') %>
               </button>
             </form>
           </td>
@@ -46,7 +46,7 @@
     </table>
 
     <p style="color: #a855f7;">
-      total <%= totalCount %> products.
+      <%= __('All') %> <%= totalCount %> <%= __('products') %>
     </p>
 
     <p>

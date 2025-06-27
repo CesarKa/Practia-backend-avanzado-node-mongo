@@ -38,6 +38,22 @@
 
   <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="">
+              <% getLocales().forEach( locale => { %>
+              <a
+                href="/change-locale/<%= locale %>"
+                class=""
+              >
+                <img
+                  width="50"
+                  height="50"
+                  src="/images/<%= locale %>.jpg"
+                  alt="<%= locale %>"
+                  class=""
+                />
+              </a>
+              <% }) %>
+            </div>
       <div class="col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex header-link fs-4">
           <%= siteTitle %>
@@ -46,7 +62,7 @@
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <% if (session.userId) { %>
-          <li><a href="/products/new" class="nav-link header-link px-2">New product</a></li>
+          <li><a href="/products/new" class="nav-link header-link px-2"><%= __('New product') %></a></li>
         <% } %>
       </ul>
 
@@ -58,5 +74,6 @@
           <a href="/logout" class="btn btn-morado">Logout</a>
         <% } %>
       </div>
+    
     </header>
   </div>

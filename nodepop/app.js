@@ -15,8 +15,9 @@ import connectMongoose from './lib/connectMongoose.js'
 import * as sessionManager from './lib/sessionManager.js'
 import * as homeControler from './controllers/homeControler.js'
 import * as productsController from './controllers/productsController.js'
-import upload from "./lib/uploadConfigure.js";
-
+import upload from "./lib/uploadConfigure.js"
+import i18n from "./lib/i18nConfigure.js"
+import { changeLanguage } from './controllers/i18nController.js';
 
 await connectMongoose();
 console.log('Connected to MongoDB.');
@@ -38,6 +39,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(sessionManager.middleware, sessionManager.useSessionInViews)
+app.use(i18n.init)
+app.get('/change-locale/:locale', changeLanguage)
 
 
 app.get('/', homeControler.index);

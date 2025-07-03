@@ -18,6 +18,7 @@ import * as productsController from './controllers/productsController.js'
 import upload from "./lib/uploadConfigure.js"
 import i18n from "./lib/i18nConfigure.js"
 import { changeLanguage } from './controllers/i18nController.js';
+import * as apiLoginController from "./controllers/api/apiLogingController.js";
 
 await connectMongoose();
 console.log('Connected to MongoDB.');
@@ -40,8 +41,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(sessionManager.middleware, sessionManager.useSessionInViews)
 app.use(i18n.init)
-app.get('/change-locale/:locale', changeLanguage)
 
+app.post('/api/login', apiLoginController.loginJWT)
+
+app.get('/change-locale/:locale', changeLanguage)
 
 app.get('/', homeControler.index);
 app.use('/users', usersRouter);

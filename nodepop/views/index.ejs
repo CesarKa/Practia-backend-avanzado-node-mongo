@@ -22,7 +22,7 @@
       <% products.forEach(product => { %>
         <tr style="color: #a855f7;">
           <td><a href="/products/<%= product._id %>" style="color: #a855f7;"><%= product.name %></a></td>
-          <td style="text-align: right"><%= product.price / 100 %>€</td>
+          <td style="text-align: right"><%= product.price %>€</td>
           <td><img src="products/<%= product.image %>"></td>
           <td><%= product.tags.join(', ') %></td>
           <td>

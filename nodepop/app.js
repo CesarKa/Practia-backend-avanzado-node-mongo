@@ -19,6 +19,8 @@ import upload from "./lib/uploadConfigure.js"
 import i18n from "./lib/i18nConfigure.js"
 import { changeLanguage } from './controllers/i18nController.js';
 import * as apiLoginController from "./controllers/api/apiLogingController.js";
+import * as apiProductsController from "./controllers/api/apiProductsController.js"
+import * as jwtAuth from "./lib/apiMidelwereJWT.js"
 
 await connectMongoose();
 console.log('Connected to MongoDB.');
@@ -43,6 +45,11 @@ app.use(sessionManager.middleware, sessionManager.useSessionInViews)
 app.use(i18n.init)
 
 app.post('/api/login', apiLoginController.loginJWT)
+app.get("/api/products/:productId", jwtAuth.guard, apiProductsController.getOne);
+app.get("/api/products", jwtAuth.guard, apiProductsController.list)
+app.post("/api/products", jwtAuth.guard,upload.single("image"), apiProductsController.newProduct)
+app.put("/api/products/:productId", jwtAuth.guard, upload.single("image"), apiProductsController.updateProduct)
+app.delete("/api/products/:productId", jwtAuth.guard, apiProductsController.deleteProduct)
 
 app.get('/change-locale/:locale', changeLanguage)
 

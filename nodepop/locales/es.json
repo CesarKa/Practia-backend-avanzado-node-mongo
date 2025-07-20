@@ -1,13 +1,13 @@
 {
-	"My Products": "Mis productos",
-	"Name": "Nombre",
-	"Image": "Imagen",
-	"Price": "Precio",
-	"Tags": "Etiquetas",
-	"Actions": "Acciones",
-	"Delete product": "Borrar producto",
-	"All": "Total",
-	"products": "productos",
-	"Are you sure you want to delete it?": "¿Estas seguro que quieres borrarlo?",
-	"New product": "Nuevo Producto"
+  "My Products": "Mis productos",
+  "Name": "Nombre",
+  "Image": "Imagen",
+  "Price": "Precio",
+  "Tags": "Etiquetas",
+  "Actions": "Acciones",
+  "Delete product": "Borrar producto",
+  "All": "Total",
+  "products": "productos",
+  "Are you sure you want to delete it?": "¿Estas seguro que quieres borrarlo?",
+  "New product": "Nuevo Producto"
 }

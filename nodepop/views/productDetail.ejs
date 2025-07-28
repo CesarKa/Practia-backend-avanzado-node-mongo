@@ -6,20 +6,20 @@
   <% } %>
 
   <% if (session.userId) { %>
-    <h1>Product Detail</h1>
+    <h1><%= __('Product Detail') %></h1>
 
     <table class="table table-bordered table-striped">
       <tbody>
         <tr>
-          <th>Name</th>
+          <th><%= __('Name') %></th>
           <td><%= product.name %></td>
         </tr>
         <tr>
-          <th>Price</th>
+          <th><%= __('Price') %></th>
           <td><%= product.price%>€</td>
         </tr>
         <tr>
-          <th>Image</th>
+          <th><%= __('Image') %></th>
           <td>
             <img src="/products/<%= product.image %>" alt="<%= product.name %>" style="max-width: 200px; border-radius: 8px;">
           </td>

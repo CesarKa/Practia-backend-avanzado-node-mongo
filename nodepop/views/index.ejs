@@ -2,7 +2,7 @@
 <div class="container">
 
   <% if (!session.userId) { %>
-    <p style="color: #a855f7;">Too see the content you must <a href="/login" style="color: #a855f7;">login</a></p>
+    <p style="color: #a855f7;"><%= __('Too see the content you must') %> <a href="/login" style="color: #a855f7;">login</a></p>
   <% } %>
 
   <% if (session.userId) { %>
